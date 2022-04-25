@@ -1,10 +1,28 @@
 #! /bin/bash -x
 
-toss=$((RANDOM%2))
-if((toss==0))
+read -p "Enter the number of times to toss:" n
+heads_count=0
+tails_count=0
+for((i=1; i<=n; i++))
+do
+   toss=$((RANDOM%2))
+   if((toss==0))
+   then
+      echo "Flip-$i Heads"
+      (( heads_count++))
+   else
+      echo "Flip-$i Tails"
+      (( tails_count++))
+   fi
+done
+echo "The Heads count is $heads_count and Tails count is $tails_count"
+if(( heads_count > tails_count ))
 then
-   echo "Head"
+   echo "Winner is Heads"
+elif(( tails_count > heads_count ))
+then
+   echo "Winner is Tails"
 else
-   echo "Tail"
+   echo "Its tie"
 fi
 
